@@ -50,6 +50,7 @@ class Post(models.Model):
 
     def __str__(self):
         return self.name
+        
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
@@ -61,7 +62,7 @@ class Comment(models.Model):
 
 class Action(models.Model):   
     name = models.CharField(max_length=100)
-    icon = models.ImageField(upload_to='action_icons/')
+    icon = models.ImageField(upload_to='user_added_icons/')
     order_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     amount = models.IntegerField()
     type = models.CharField(max_length=12)
