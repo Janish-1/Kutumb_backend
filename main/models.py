@@ -64,7 +64,6 @@ class Action(models.Model):
     icon = models.ImageField(upload_to='action_icons/')
     order_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     amount = models.IntegerField()
-    # order_by = models.IntegerField()
     type = models.CharField(max_length=12)
     active = models.BooleanField(default=True)
 

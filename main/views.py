@@ -173,9 +173,6 @@ class PasswordUpdateView(APIView):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-   
-
-
 class ForgotPasswordView(APIView):
     def post(self, request, *args, **kwargs):
         serializer = ForgotPasswordSerializer(data=request.data)
@@ -198,7 +195,6 @@ class ForgotPasswordView(APIView):
             print("ok")
             return Response({'ok': f'OTP sent successfully {user.id}'})
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 class PostListAPIView(APIView):
     def get(self, request):
