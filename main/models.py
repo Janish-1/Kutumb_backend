@@ -34,8 +34,6 @@ class CustomUser(AbstractUser):
         
         super().save(*args, **kwargs)
 
-
-
 class Post(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
@@ -97,9 +95,3 @@ class Transctions(models.Model):
     payment_id = models.CharField(max_length=200,null=True,blank=True)
     payment_mode = models.CharField(max_length=100,null=True,blank=True)
     gateway = models.CharField(max_length=100,null=True,blank=True)
-
-
-
-
-
-
