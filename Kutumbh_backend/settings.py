@@ -26,8 +26,7 @@ SECRET_KEY = 'django-insecure-mm8d@ixu$34jurv9q-1ftoj!&okp(90z_j-w%!38n8h+3t*m08
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['http://kutumb.itpandit.in/','kutumb.itpandit.in','*']
-
+ALLOWED_HOSTS = ['http://kutumb.itpandit.in/','*']
 
 # Application definition
 
@@ -136,12 +135,13 @@ AUTHENTICATION_BACKENDS = [
 ]
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'ramo.co.in'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'sonalisharma7224@gmail.com'
-EMAIL_HOST_PASSWORD = 'hxszwovnrbvcrmym'
+EMAIL_HOST_USER = 'noreply@ramo.co.in'  # Replace with your cPanel email address
+EMAIL_HOST_PASSWORD = '.OwE6EY5E82c'  # Replace with your cPanel email password
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')    

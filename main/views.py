@@ -2,18 +2,21 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .models import *
+from . import models
+import json
 from .serializers import *
 from django.contrib.auth import authenticate,login
 import random
 from django.core.mail import send_mail
 from django.utils.crypto import get_random_string
-
+from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
 from phonepe.sdk.pg.payments.v1.payment_client import PhonePePaymentClient
 from phonepe.sdk.pg.env import Env
 import uuid  
 from phonepe.sdk.pg.payments.v1.models.request.pg_pay_request import PgPayRequest
-
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
 # from django.contrib.auth.hashers import check_password
 
 class UserList(APIView):
@@ -74,7 +77,6 @@ class ChangePasswordView(APIView):
             return Response({'message': 'Password changed successfully'}, status=status.HTTP_200_OK)        
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
 # class loginview(APIView):
 class UserLoginAPIView(APIView):
     def post(self, request, format=None):
@@ -109,8 +111,41 @@ class UserLoginAPIView(APIView):
             return Response({'message': user.id}, status=status.HTTP_200_OK)
         else:
             return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+
+@csrf_exempt
+def send_email(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            email = data.get('email')
+            
+            user = CustomUser.objects.get(email=email)
+
+            # Generate OTP
+            otp = ''.join(random.choices('0123456789', k=6))
+
+            user.otp = otp
+            user.save()
+
+            # Compose email
+            subject = 'Login OTP'
+            message = f'Your OTP for Login is: {otp}'
+            from_email = 'noreply@ramo.co.in'  # Get sender email from settings
+            recipient_list = [email]
+
+            # Send email
+            send_mail(subject, message, from_email, recipient_list)
+
+            return JsonResponse({'message': 'Email sent successfully'})
         
-    
+        except CustomUser.DoesNotExist:
+            return JsonResponse({'message':'User not found'}, status=404)
+        
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=400)
+
+    else:
+        return JsonResponse({'error': 'Invalid request method'}, status=405)
 
 class otpverify(APIView):
     def post(self, request, format=None):
@@ -130,7 +165,6 @@ class otpverify(APIView):
             return Response({'message':"Logged In Successfully"},status=status.HTTP_200_OK)
         else:
             return Response({'error': 'Invalid OTP'}, status=status.HTTP_400_BAD_REQUEST)
-
 
 # class otpverify(APIView):
 #     def post(self, request,format=None):

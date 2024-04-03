@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import *
+from . import views
 
 urlpatterns = [
     path('users/', UserList.as_view()),                 
@@ -21,4 +22,5 @@ urlpatterns = [
     path('donations/', ActionListDonationAPIView.as_view(), name='action-list'),
     path('celebrations/', ActionListCelebrationAPIView.as_view(), name='action-list'),
     path('sub/', SubscriptionPaymentView.as_view(), name='transactions'),
+    path('sendemail/',views.send_email,name='sendemail'),
 ]
