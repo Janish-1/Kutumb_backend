@@ -147,6 +147,30 @@ def send_email(request):
     else:
         return JsonResponse({'error': 'Invalid request method'}, status=405)
 
+@csrf_exempt
+def verify_loginotp(request):
+        if request.method == 'POST':
+            try:
+                data = json.loads(request.body)
+                email = data.get('email')
+                userotp = data.get('otp')
+                
+                user = CustomUser.objects.get(email=email)
+
+                otp = user.otp
+                print(otp,userotp)
+                if (otp == userotp):
+                    return JsonResponse({'success':True,'message': 'Email sent successfully'})
+
+            except CustomUser.DoesNotExist:
+                return JsonResponse({'success':False,'message':'User not found'}, status=404)
+        
+            except Exception as e:
+                return JsonResponse({'success':False,'error': str(e)}, status=400)
+
+        else:
+            return JsonResponse({'success':False,'error': 'Invalid request method'}, status=405)
+
 class otpverify(APIView):
     def post(self, request, format=None):
         user_id = request.data.get('user_id')

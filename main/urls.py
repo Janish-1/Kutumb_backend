@@ -23,4 +23,5 @@ urlpatterns = [
     path('celebrations/', ActionListCelebrationAPIView.as_view(), name='action-list'),
     path('sub/', SubscriptionPaymentView.as_view(), name='transactions'),
     path('sendemail/',views.send_email,name='sendemail'),
+    path('verifyloginotp/',views.verify_loginotp,name='verifyloginotp'),
 ]
