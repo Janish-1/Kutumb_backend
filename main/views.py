@@ -101,7 +101,7 @@ class UserLoginAPIView(APIView):
             subject = 'Password Reset OTP'
             message = f'Your OTP for password reset is: {otp}'
             print(message)
-            from_email = 'sonalisharma7224@gmail.com'
+            from_email = 'noreply@ramo.co.in'
             recipient_list = [user.email]
             # recipient_list = [email]
 
@@ -160,16 +160,16 @@ def verify_loginotp(request):
                 otp = user.otp
                 print(otp,userotp)
                 if (otp == userotp):
-                    return JsonResponse({'success':True,'message': 'Email sent successfully'})
+                    return JsonResponse({'message': user.id},status=status.HTTP_200_OK)
 
             except CustomUser.DoesNotExist:
-                return JsonResponse({'success':False,'message':'User not found'}, status=404)
+                return JsonResponse({'message':'User not found'}, status=status.HTTP_404_NOT_FOUND)
         
             except Exception as e:
-                return JsonResponse({'success':False,'error': str(e)}, status=400)
+                return JsonResponse({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
         else:
-            return JsonResponse({'success':False,'error': 'Invalid request method'}, status=405)
+            return JsonResponse({'error': 'Invalid request method'}, status=405)
 
 class otpverify(APIView):
     def post(self, request, format=None):
