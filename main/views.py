@@ -136,7 +136,7 @@ def send_email(request):
             # Send email
             send_mail(subject, message, from_email, recipient_list)
 
-            return JsonResponse({'message': 'Email sent successfully'})
+            return JsonResponse({'message': 'Email sent successfully','otp':otp})
         
         except CustomUser.DoesNotExist:
             return JsonResponse({'message':'User not found'}, status=404)

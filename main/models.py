@@ -27,8 +27,8 @@ class CustomUser(AbstractUser):
         return self.username
 
     def save(self, *args, **kwargs):
-        if self.account_type not in [1, 2, 3]:
-            raise ValueError("Account type must be 1, 2, or 3.")
+        if self.account_type not in [1, 2, 3, 4]:
+            raise ValueError("Account type must be 1, 2, 3 or 4.")
         if self.account_type_change_request not in [1, 2]:
             raise ValueError("Account type change request must be 1 or 2.")
         
