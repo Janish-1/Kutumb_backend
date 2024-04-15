@@ -1,0 +1,206 @@
+[
+    {
+        "model": "main.action",
+        "pk": 1,
+        "fields": {
+            "name": "My Mom's Birthday",
+            "icon": "action_icons/main.png",
+            "order_by": 1,
+            "amount": 200,
+            "type": "celebration",
+            "active": false
+        }
+    },
+    {
+        "model": "main.action",
+        "pk": 2,
+        "fields": {
+            "name": "Orphanage Donation",
+            "icon": "action_icons/dkh_Qv7rBlS.png",
+            "order_by": 1,
+            "amount": 500,
+            "type": "donation",
+            "active": false
+        }
+    },
+    {
+        "model": "main.action",
+        "pk": 3,
+        "fields": {
+            "name": "Brother's Birthday",
+            "icon": "action_icons/gpt.png",
+            "order_by": 1,
+            "amount": 100,
+            "type": "celebration",
+            "active": false
+        }
+    },
+    {
+        "model": "main.action",
+        "pk": 4,
+        "fields": {
+            "name": "Food Donation",
+            "icon": "action_icons/img.png",
+            "order_by": 1,
+            "amount": 200,
+            "type": "donation",
+            "active": false
+        }
+    },
+    {
+        "model": "main.action",
+        "pk": 5,
+        "fields": {
+            "name": "My anniversary",
+            "icon": "action_icons/bard_ag4ug7u.png",
+            "order_by": 1,
+            "amount": 599,
+            "type": "celebration",
+            "active": false
+        }
+    },
+    {
+        "model": "main.action",
+        "pk": 6,
+        "fields": {
+            "name": "School Donations",
+            "icon": "action_icons/sss.png",
+            "order_by": 1,
+            "amount": 500,
+            "type": "donation",
+            "active": false
+        }
+    },
+    {
+        "model": "main.action",
+        "pk": 7,
+        "fields": {
+            "name": "Cash Donation",
+            "icon": "action_icons/002-cash.png",
+            "order_by": 1,
+            "amount": 1000,
+            "type": "donation",
+            "active": true
+        }
+    },
+    {
+        "model": "main.action",
+        "pk": 8,
+        "fields": {
+            "name": "Blanket Donation",
+            "icon": "action_icons/003-blanket.png",
+            "order_by": 1,
+            "amount": 1000,
+            "type": "donation",
+            "active": true
+        }
+    },
+    {
+        "model": "main.action",
+        "pk": 9,
+        "fields": {
+            "name": "Food Donation",
+            "icon": "action_icons/004-food-donation.png",
+            "order_by": 1,
+            "amount": 1000,
+            "type": "donation",
+            "active": true
+        }
+    },
+    {
+        "model": "main.action",
+        "pk": 10,
+        "fields": {
+            "name": "Books Donation",
+            "icon": "action_icons/005-book.png",
+            "order_by": 1,
+            "amount": 1000,
+            "type": "donation",
+            "active": true
+        }
+    },
+    {
+        "model": "main.action",
+        "pk": 11,
+        "fields": {
+            "name": "Gau Seva",
+            "icon": "action_icons/001-cow.png",
+            "order_by": 1,
+            "amount": 1000,
+            "type": "donation",
+            "active": true
+        }
+    },
+    {
+        "model": "main.action",
+        "pk": 12,
+        "fields": {
+            "name": "Diwali Celebration",
+            "icon": "action_icons/001-candles.png",
+            "order_by": 1,
+            "amount": 1000,
+            "type": "celebration",
+            "active": true
+        }
+    },
+    {
+        "model": "main.action",
+        "pk": 13,
+        "fields": {
+            "name": "Holi Celebration",
+            "icon": "action_icons/004-holi.png",
+            "order_by": 1,
+            "amount": 1000,
+            "type": "celebration",
+            "active": true
+        }
+    },
+    {
+        "model": "main.action",
+        "pk": 14,
+        "fields": {
+            "name": "Raksha Bandhan",
+            "icon": "action_icons/003-raksha-bandhan.png",
+            "order_by": 1,
+            "amount": 1000,
+            "type": "celebration",
+            "active": true
+        }
+    },
+    {
+        "model": "main.action",
+        "pk": 15,
+        "fields": {
+            "name": "Birthday Celebration",
+            "icon": "action_icons/006-happy-birthday.png",
+            "order_by": 1,
+            "amount": 1000,
+            "type": "celebration",
+            "active": true
+        }
+    },
+    {
+        "model": "main.action",
+        "pk": 16,
+        "fields": {
+            "name": "Retirement Celebration",
+            "icon": "action_icons/007-retirement.png",
+            "order_by": 1,
+            "amount": 1000,
+            "type": "celebration",
+            "active": true
+        }
+    },
+    {
+        "model": "main.action",
+        "pk": 17,
+        "fields": {
+            "name": "Anniversary Celebration",
+            "icon": "action_icons/002-party-popper.png",
+            "order_by": 1,
+            "amount": 1000,
+            "type": "celebration",
+            "active": true
+        }
+    }
+]

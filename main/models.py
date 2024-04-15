@@ -8,7 +8,7 @@ class CustomUser(AbstractUser):
     address = models.TextField(null=True,blank=True)
     dob = models.DateField(auto_now_add=True)
     password = models.CharField(max_length=100)
-    account_type = models.IntegerField()  # 1 is for volunteer , 2 is for member 3 is for Army member
+    account_type = models.IntegerField(null=True)  # 1 is for volunteer , 2 is for member 3 is for Army member
     account_type_change_request = models.IntegerField(default=1,null=True,blank=True)
     photo = models.ImageField(upload_to='user_photos/', blank=True, null=True)
     last_update = models.DateTimeField(auto_now=True)
@@ -27,8 +27,6 @@ class CustomUser(AbstractUser):
         return self.username
 
     def save(self, *args, **kwargs):
-        if self.account_type not in [1, 2, 3, 4]:
-            raise ValueError("Account type must be 1, 2, 3 or 4.")
         if self.account_type_change_request not in [1, 2]:
             raise ValueError("Account type change request must be 1 or 2.")
         
@@ -45,6 +43,7 @@ class Post(models.Model):
     active = models.BooleanField(default=True)
     is_approved = models.BooleanField(default=False)
     addeddateTime = models.DateTimeField(auto_now_add=True)
+    update = models.TextField(null=True,blank=True)
 
     def __str__(self):
         return self.name
