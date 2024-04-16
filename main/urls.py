@@ -25,4 +25,7 @@ urlpatterns = [
     path('sub/', SubscriptionPaymentView.as_view(), name='transactions'),
     path('sendemail/',views.send_email,name='sendemail'),
     path('verifyloginotp/',views.verify_loginotp,name='verifyloginotp'),
+    path('follow-user/', FollowUserAPIView.as_view(), name='follow-user'),
+    path('follower-following/<int:pk>', FollowerFollowingAPIView.as_view(), name='follower-following'),
+    path('following-post/<int:pk>',FollowingPostAPIView.as_view(),name='following-post'),
 ]

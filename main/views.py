@@ -112,6 +112,60 @@ class UserLoginAPIView(APIView):
         else:
             return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
+class FollowUserAPIView(APIView):
+    def post(self, request):
+        user_id = request.data.get('user_id')  # ID of the user to follow
+        follower_id = request.data.get('follower_id')  # ID of the user who wants to follow
+        
+        try:
+            user_to_follow = CustomUser.objects.get(id=user_id)
+            follower = CustomUser.objects.get(id=follower_id)
+        except CustomUser.DoesNotExist:
+            return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+        
+        # Check if the follower is already following the user
+        if user_to_follow in follower.following.all():
+            return Response({'message': 'User is already followed'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Add the user to the follower's following list
+        follower.following.add(user_to_follow)
+        follower.save()
+        
+        return Response({'message': 'User followed successfully'}, status=status.HTTP_200_OK)
+
+class FollowerFollowingAPIView(APIView):
+    def get(self, request, pk):
+        try:
+            follower = CustomUser.objects.get(id=pk)
+        except CustomUser.DoesNotExist:
+            return Response({'error': 'Follower not found'}, status=status.HTTP_404_NOT_FOUND)
+        
+        # Get the users followed by the current follower
+        following_users = follower.following.all().values('id','username')  # Adjust fields as needed
+        
+        return Response({'following_users': following_users}, status=status.HTTP_200_OK)
+
+class FollowingPostAPIView(APIView):
+    def get(self, request, pk):
+        try:
+            follower = CustomUser.objects.get(id=pk)
+        except CustomUser.DoesNotExist:
+            return Response({'error': 'Follower not found'}, status=status.HTTP_404_NOT_FOUND)
+        
+        # Get the users followed by the current follower
+        following_users = follower.following.all().values('id')  # Adjust fields as needed
+        
+        # Collect posts of following users
+        following_posts = []
+        for user in following_users:
+            posts = Post.objects.filter(user_id=user['id'],category='post')
+            following_posts.extend(posts)
+        
+        # Serialize posts
+        serializer = PostSerializer(following_posts, many=True)
+        
+        return Response({'following_posts': serializer.data}, status=status.HTTP_200_OK)
+
 @csrf_exempt
 def send_email(request):
     if request.method == 'POST':

@@ -23,6 +23,8 @@ class CustomUser(AbstractUser):
     adhaar = models.CharField(max_length=100,null=True,blank=True)
     awards = models.BooleanField(default=False)
 
+    followers = models.ManyToManyField('self', symmetrical=False, related_name='following',null=True,blank=True)
+    
     def __str__(self):
         return self.username
 
