@@ -255,11 +255,21 @@ class ForgotPasswordView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class PostListAPIView(APIView):
-    def get(self, request):
-        posts = Post.objects.all()
-        serializer = PostSerializer(posts, many=True)
-        return Response(serializer.data)
-
+    def get(self, request, pk=None):  # Update the method signature to accept pk
+        if pk is not None:
+            # Retrieve a single post by pk
+            post = Post.objects.filter(pk=pk).first()
+            if post is not None:
+                serializer = PostSerializer(post)
+                return Response(serializer.data)
+            else:
+                return Response({"error": "Post not found"}, status=status.HTTP_404_NOT_FOUND)
+        else:
+            # Retrieve all posts
+            posts = Post.objects.all()
+            serializer = PostSerializer(posts, many=True)
+            return Response(serializer.data)
+            
     def post(self, request):
         serializer = PostSerializer(data=request.data)
         if serializer.is_valid():

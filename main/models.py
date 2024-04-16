@@ -43,7 +43,12 @@ class Post(models.Model):
     active = models.BooleanField(default=True)
     is_approved = models.BooleanField(default=False)
     addeddateTime = models.DateTimeField(auto_now_add=True)
+    addnpic = models.ImageField(upload_to='post_photos/',blank=True, null=True)
     update = models.TextField(null=True,blank=True)
+    addnpic1 = models.ImageField(upload_to='post_photos/',blank=True, null=True)
+    update1 = models.TextField(null=True,blank=True)
+    addnpic2 = models.ImageField(upload_to='post_photos/',blank=True, null=True)
+    update2 = models.TextField(null=True,blank=True)
 
     def __str__(self):
         return self.name

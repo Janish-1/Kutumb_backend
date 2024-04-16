@@ -12,6 +12,7 @@ urlpatterns = [
     path('update-password/', PasswordUpdateView.as_view()),
     path('posts/', PostListAPIView.as_view(), name='post-list'),
     path('allpost/', PostListAPIViews.as_view(), name='post-list'),
+    path('getspecposts/<int:pk>/', PostListAPIView.as_view(), name='post-get-single'),
     path('posts/<int:pk>/', PostDetailAPIView.as_view(), name='post-detail'),
     path('comments/<int:post_id>/', CommentCreateAPIView.as_view(), name='comment-create'),
     path('like/<int:post_id>/', LikePostAPIView.as_view(), name='like_post'),
