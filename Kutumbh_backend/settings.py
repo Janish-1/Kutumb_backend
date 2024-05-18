@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-mm8d@ixu$34jurv9q-1ftoj!&okp(90z_j-w%!38n8h+3t*m08
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['http://kutumb.itpandit.in/','*']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 

@@ -66,7 +66,7 @@ class Comment(models.Model):
 
 class Action(models.Model):   
     name = models.CharField(max_length=100)
-    icon = models.ImageField(upload_to='action_icons/')
+    icon = models.ImageField(upload_to='action_icons/',null=True,blank=True)
     order_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     amount = models.IntegerField()
     type = models.CharField(max_length=12)
